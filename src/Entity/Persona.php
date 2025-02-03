@@ -31,6 +31,8 @@ class Persona
     #[ORM\Column]
     private ?int $cedula = null;
 
+    #[ORM\Column(length: 20)]
+    private ?int $celular = null;
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +106,18 @@ class Persona
     public function setCedula(int $cedula): static
     {
         $this->cedula = $cedula;
+
+        return $this;
+    }
+
+    public function getCelular(): ?int
+    {
+        return $this->celular;
+    }
+
+    public function setCelular(?int $celular): static
+    {
+        $this->celular = $celular;
 
         return $this;
     }

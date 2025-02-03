@@ -32,6 +32,7 @@ class RegistrationFormType extends AbstractType
             ->add('edad', TextType::class)
             ->add('direccion', TextType::class)
             ->add('cedula', TextType::class)
+            ->add('celular', TextType::class)
             ->add('email',EmailType::class,[
                 'mapped' => false
             ])

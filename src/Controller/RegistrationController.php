@@ -31,6 +31,7 @@ class RegistrationController extends AbstractController
             $persona->setGenero($form->get('genero')->getData());
             $persona->setDireccion($form->get('direccion')->getData());
             $persona->setCedula($form->get('cedula')->getData());
+            $persona->setCelular($form->get('celular')->getData());
             $entityManager->persist($persona);
 
             /** @var string $plainPassword */
