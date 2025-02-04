@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EmpresaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EmpresaRepository::class)]
@@ -27,6 +29,17 @@ class Empresa
 
     #[ORM\Column(length: 255)]
     private ?string $ubicacion = null;
+
+    /**
+     * @var Collection<int, UsuarioEmpresa>
+     */
+    #[ORM\OneToMany(targetEntity: UsuarioEmpresa::class, mappedBy: 'empresa')]
+    private Collection $usuarioEmpresas;
+
+    public function __construct()
+    {
+        $this->usuarioEmpresas = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -89,6 +102,36 @@ class Empresa
     public function setUbicacion(string $ubicacion): static
     {
         $this->ubicacion = $ubicacion;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UsuarioEmpresa>
+     */
+    public function getUsuarioEmpresas(): Collection
+    {
+        return $this->usuarioEmpresas;
+    }
+
+    public function addUsuarioEmpresa(UsuarioEmpresa $usuarioEmpresa): static
+    {
+        if (!$this->usuarioEmpresas->contains($usuarioEmpresa)) {
+            $this->usuarioEmpresas->add($usuarioEmpresa);
+            $usuarioEmpresa->setEmpresa($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUsuarioEmpresa(UsuarioEmpresa $usuarioEmpresa): static
+    {
+        if ($this->usuarioEmpresas->removeElement($usuarioEmpresa)) {
+            // set the owning side to null (unless already changed)
+            if ($usuarioEmpresa->getEmpresa() === $this) {
+                $usuarioEmpresa->setEmpresa(null);
+            }
+        }
 
         return $this;
     }
