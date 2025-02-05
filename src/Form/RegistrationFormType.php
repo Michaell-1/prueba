@@ -2,9 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Usuario;
-use App\Entity\Empresa;
 
+use App\Entity\Usuario;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -22,11 +21,22 @@ class RegistrationFormType extends AbstractType
     {
         $builder
 
-            ->add('nombre', TextType::class)
-            ->add('ruc', TextType::class)
-            ->add('dueno', TextType::class)
-            ->add('contacto', TextType::class)
-            ->add('ubicacion', TextType::class)
+            ->add('nombre', TextType::class,[
+                'mapped' => false
+                //solucionar error de mapeo
+            ])
+            ->add('ruc', TextType::class,[
+                'mapped' => false
+            ])
+            ->add('dueno', TextType::class,[
+                'mapped' => false
+            ])
+            ->add('contacto', TextType::class,[
+                'mapped' => false
+            ])
+            ->add('ubicacion', TextType::class,[
+                'mapped' => false
+            ])
             ->add('email', TextType::class)
 
             ->add('agreeTerms', CheckboxType::class, [
@@ -63,4 +73,5 @@ class RegistrationFormType extends AbstractType
             'data_class' => Usuario::class,
         ]);
     }
+    
 }

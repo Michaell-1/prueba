@@ -13,9 +13,8 @@
 
     {{ form_start(registrationForm) }}
 
-
         <div class="form-group">
-            {{ form_row(usuario.empresa.nombre) }}
+            {{ form_row(registrationForm.nombre) }}
         </div>
 
         <div class="form-group">
@@ -23,23 +22,15 @@
         </div>
 
         <div class="form-group">
-            {{ form_row(registrationForm.genero) }}
+            {{ form_row(registrationForm.contacto) }}
         </div>
 
         <div class="form-group">
-            {{ form_row(registrationForm.edad) }}
+            {{ form_row(registrationForm.ruc) }}
         </div>
 
         <div class="form-group">
-            {{ form_row(registrationForm.direccion) }}
-        </div>
-
-        <div class="form-group">
-            {{ form_row(registrationForm.cedula) }}
-        </div>
-
-        <div class="form-group">
-            {{ form_row(registrationForm.celular) }}
+            {{ form_row(registrationForm.dueno) }}
         </div>
 
         <div class="form-group">
