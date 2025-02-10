@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UsuarioRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -35,6 +37,17 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Persona $persona = null;
+
+    /**
+     * @var Collection<int, UsuarioEmpresa>
+     */
+    #[ORM\OneToMany(targetEntity: UsuarioEmpresa::class, mappedBy: 'usuario')]
+    private Collection $usuarioEmpresas;
+
+    public function __construct()
+    {
+        $this->usuarioEmpresas = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,6 +132,36 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPersona(?persona $persona): static
     {
         $this->persona = $persona;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UsuarioEmpresa>
+     */
+    public function getUsuarioEmpresas(): Collection
+    {
+        return $this->usuarioEmpresas;
+    }
+
+    public function addUsuarioEmpresa(UsuarioEmpresa $usuarioEmpresa): static
+    {
+        if (!$this->usuarioEmpresas->contains($usuarioEmpresa)) {
+            $this->usuarioEmpresas->add($usuarioEmpresa);
+            $usuarioEmpresa->setUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUsuarioEmpresa(UsuarioEmpresa $usuarioEmpresa): static
+    {
+        if ($this->usuarioEmpresas->removeElement($usuarioEmpresa)) {
+            // set the owning side to null (unless already changed)
+            if ($usuarioEmpresa->getUsuario() === $this) {
+                $usuarioEmpresa->setUsuario(null);
+            }
+        }
 
         return $this;
     }

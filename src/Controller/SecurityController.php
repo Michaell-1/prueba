@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\UsuarioEmpresa;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -28,5 +31,15 @@ class SecurityController extends AbstractController
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+    #[Route(path: '/user_validate', name: 'user_validate')]
+    public function userValidate(UserInterface $user, EntityManagerInterface $em)    
+    {
+        $empresa = $em->getRepository(UsuarioEmpresa::class)->findOneBy(['usuario' => $user->getId()]);
+        if($empresa){
+            return $this->redirectToRoute('app_empperfil');
+        }else{
+            return $this->redirectToRoute('app_home');
+        }
     }
 }
