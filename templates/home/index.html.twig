@@ -9,7 +9,22 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 {% endblock %}
 
-<di>
+<div>
+    <!-- FILTROS Y BÚSQUEDA -->
+    <div class="filtro">
+        <input type="text" id="search" placeholder="Buscar ofertas..." />
+        <select id="filter-type">
+            <option value="">Tipo de contrato</option>
+            <option value="indefinido">Indefinido</option>
+            <option value="temporal">Temporal</option>
+        </select>
+        <select id="filter-canton">
+            <option value="">Cantón</option>
+            <option value="quito">Quito</option>
+            <option value="guayaquil">Guayaquil</option>
+        </select>
+    </div>
+    
     <!-- Tarjeta de Perfil-->
     <div class="profile-card">
         <h2>Información del Usuario</h2>
