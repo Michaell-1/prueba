@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Ofertas de Trabajo</h2>
+
+    <input type="text" id="searchTitle" placeholder="Buscar por título">
+    <select id="searchContract">
+        <option value="">Todos los tipos de contrato</option>
+        <option value="Full-time">Full-time</option>
+        <option value="Part-time">Part-time</option>
+    </select>
+    <button data-action="click->job#search">Buscar</button>
+
+    <div id="jobOffers">
+        <!-- Aquí se renderizan las ofertas laborales -->
+    </div>
+{% endblock %}

@@ -8,13 +8,50 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div class="Busquedaempresa">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/Tercero/Desktop/Proyectos de symfony/prueba/src/Controller/EmpperfilController.php</code></li>
-        <li>Your template at <code>C:/Users/Tercero/Desktop/Proyectos de symfony/prueba/templates/empperfil/index.html.twig</code></li>
-    </ul>
+    <div class="filtro">
+        <input type="text" id="search" placeholder="Buscar ofertas..." />
+        <select id="filter-type">
+            <option value="">Tipo de contrato</option>
+            <option value="indefinido">Indefinido</option>
+            <option value="temporal">Temporal</option>
+        </select>
+        <select id="filter-canton">
+            <option value="">Cantón</option>
+            <option value="quito">Quito</option>
+            <option value="guayaquil">Guayaquil</option>
+        </select>
+    </div>
+
+    <div data-controller="job-list">
+    <h3>Ofertas de Trabajo</h3>
+    <div id="jobOffers"></div>
+    </div>
+
+    <div class="Perfilempresa">
+        <ul>
+            {% for empresa in empresas %}
+                <li>{{ empresa.nombre }}</li>
+            {% endfor %}
+            {% for empresa in empresas %}
+                <li>{{ empresa.dueño }}</li>
+            {% endfor %}
+            {% for empresa in empresas %}
+                <li>{{ empresa.ubicacion }}</li>
+            {% endfor %}
+            {% for empresa in empresas %}
+                <li>{{ empresa.contacto }}</li>
+            {% endfor %}
+            {% for empresa in empresas %}
+                <li>{{ empresa.ruc }}</li>
+            {% endfor %}
+            {% for empresa in empresas %}
+                <li>{{ app.user.email }}</li>
+            {% endfor %}
+        </ul>
+        
+    </div>
+    
 </div>
 {% endblock %}

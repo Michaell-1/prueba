@@ -1,28 +1,67 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Tarjeta de perfil */
 .profile-card {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
-    color: #495057;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .profile-card h2 {
-    text-align: center;
-    margin-bottom: 1rem;
-    color: #343a40;
+    margin-bottom: 15px;
+    color: #333;
 }
 
-.profile-card .field {
-    margin: 0.5rem 0;
-    font-size: 1rem;
+.field {
+    background: #f8f9fa;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-align: left;
 }
 
-.profile-card .field span {
+.field span {
     font-weight: bold;
-    display: inline-block;
-    width: 120px;
+    color: #555;
+}
+
+/* Estilos de Filtros y Búsqueda */
+.filtro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filtro input, 
+.filtro select {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .profile-card, .filtro {
+        width: 100%;
+    }
 }
